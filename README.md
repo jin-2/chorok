@@ -42,5 +42,10 @@ graphql type, resolver 디렉토리 구조 설계
 ### 2.0 Introduction to Prisma
 
 - Prisma: ORM(Object-relational mapping)
-- DB 관련 문제를 해결한다.(어떻게?)
+    - [Prisma의 특징은 GraphQL스키마를 기반으로 DB를 자동생성 해준다는 것입니다.](https://velog.io/@alskt0419/ORM%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C...-iek4f0o3fg)
+
+1. Sing in
+1. Create service하게 되면 next step을 알려준다
+1. generated 폴더는 .gitignore에 추가
+1. datamodel.prisma 파일에 field를 추가하고 `prisma deploy` 실행하면 DB에 반영
 
