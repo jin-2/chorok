@@ -128,3 +128,11 @@ export default {
     }
 };
 ``` 
+
+### 2.5 Resolvers with Prisma
+ 
+#### prisma fragment
+
+- [인스타클론코딩 Server.15 - fragment를 이용한 데이터접근](https://13akstjq.github.io/clonecoding/2019/06/26/%EC%9D%B8%EC%8A%A4%ED%83%80-%EC%84%9C%EB%B2%84-15-fragment%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%91%EA%B7%BC.html)
+
+ graphql는 서버의 공격를 막기위해 데이터를 깊게 접근할 수 없도록 해놓은 것을 해결하기 위해 사용하는 것입니다. fragment를 지정해줌으로 데이터에 깊게 접근할 수 있습니다.
