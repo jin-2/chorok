@@ -49,3 +49,82 @@ graphql type, resolver 디렉토리 구조 설계
 1. generated 폴더는 .gitignore에 추가
 1. datamodel.prisma 파일에 field를 추가하고 `prisma deploy` 실행하면 DB에 반영
 
+### 2.2 Testing Prisma OMG
+
+Playground에서 데이터 조작
+
+#### user 찾기
+
+```http request
+{
+  user(where: {id: ""}) {
+    userName
+  }
+}
+```
+
+#### user 추가하기
+
+```http request
+mutation {
+  createUser (data: {userName: "a", email: "a@gmail.com"}) {
+    id
+  }
+}
+```
+
+#### Following 추가하기
+
+```http request
+mutation {
+  updateUser(data: {following:{
+    connect: {
+      id: ""
+    }
+  }} where: {id: ""}) {
+    firstName
+    lastName
+    following {
+      id
+    }
+    followers {
+      id
+    }
+  }
+}
+```
+
+### 2.3 Integrating Prisma in our Server
+
+- [Prisma 사용하여 5분만에 ORM 레이어 생성하기](https://medium.com/withj-kr/prisma-prisma-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-5%EB%B6%84%EB%A7%8C%EC%97%90-orm-%EB%A0%88%EC%9D%B4%EC%96%B4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0-154f9c766605)
+
+```
+// prisma.yml
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
+```
+
+위 컨피겨레이션을 추가함으로써 자바스크립트 클라이언트를 생성하고 해당 클라이언트를 ./generated/prisma-client/에 매번 업데이트하게 됩니다.
+
+```
+prisma generate
+```
+
+위 코드 실행이 완료되면 generated 폴더와 하위 폴더 prisma-client가 생성되는데 그 안에는 prisma에서 생성한 GraphQL 스키마를 담고 있습니다.
+
+#### 예제
+
+```
+import { prisma } from "../../../../generated/prisma-client";
+
+export default {
+    Query: {
+        sayHello: async () => {
+            console.log(await prisma.users());
+            return "Hello"
+        }
+    }
+};
+``` 
