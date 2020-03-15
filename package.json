@@ -1,0 +1,28 @@
+{
+  "name": "chorok",
+  "version": "1.0.0",
+  "repository": "https://github.com/jin-2/chorok.git",
+  "author": "jin-2 <jmakeaz@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "prisma deploy",
+    "generate": "prisma generate",
+    "prisma": "yarn deploy && yarn generate",
+    "dev": "nodemon --exec babel-node src/server.js"
+  },
+  "dependencies": {
+    "envdot": "^0.0.3",
+    "graphql-tools": "^4.0.6",
+    "graphql-yoga": "^1.18.3",
+    "merge-graphql-schemas": "^1.7.6",
+    "morgan": "^1.9.1",
+    "npm": "^6.13.7",
+    "prisma-client-lib": "^1.34.10"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4"
+  }
+}
